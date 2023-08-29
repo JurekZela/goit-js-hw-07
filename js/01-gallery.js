@@ -1,50 +1,45 @@
 import { galleryItems } from './gallery-items.js';
 // Change code below this line
 
-
-
 function createImgCardsMarkup(images) {
 
-return images.map(({ preview, original, description }) => {
+  return images.map(({ preview, original, description }) => {
+  
+  return `<li class="gallery__item">
+    <img
+      class="gallery__image"
+      src="${preview}"
+      data-source="${original}"
+      alt="${description}"
+    />
+  </li>`
+  
+  }).join('');
+  };
+  
+  const createGalleryList = createImgCardsMarkup(galleryItems);
+  const galleryBoxesRef = document.querySelector('.gallery');
+  galleryBoxesRef.insertAdjacentHTML('beforeend', createGalleryList);
 
-return `<li class="gallery__item">
-<a class="gallery__link" href="${original}">
-  <img
-    class="gallery__image"
-    src="${preview}"
-    data-source="large-image.jpg"
-    alt="${description}"
-  />
-</a>
-</li>`
 
-}).join('');
-};
-
-const galleryBoxesRef = document.querySelector('.gallery');
-const createGalleryList = createImgCardsMarkup(galleryItems);
-galleryBoxesRef.insertAdjacentHTML('beforeend', createGalleryList);
-
-galleryBoxesRef.addEventListener('click', onGalleryBoxesClick);
+  galleryBoxesRef.addEventListener('click', onGalleryBoxesClick);
 
 function onGalleryBoxesClick(e) {
-    e.preventDefault();
+  e.preventDefault();
+    
     const isImgSwatchEl = e.target.classList.contains('.gallery__image');
 
     if (!isImgSwatchEl) {
         return;        
     }
 
+    if (isImgSwatchEl) {
+      const targetOriginImage = e.target.dataset.source;
 
+      const instance = basicLightbox.create(`
+      <img src="${targetOriginImage}" width="800" height="600">
+      `)
+      
+     instance.show()
+    }  
 };
-
-// function onOpenModalWindowImgClick(e) {
-  
-// };
-
-
-import * as basicLightbox from 'basiclightbox'
-
-const instance = basicLightbox.create();
-
-instance.show(createImgCardsMarkup);
