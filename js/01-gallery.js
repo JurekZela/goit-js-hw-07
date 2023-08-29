@@ -28,12 +28,11 @@ function onGalleryBoxesClick(e) {
   e.preventDefault();
     
     const isImgSwatchEl = e.target.classList.contains('.gallery__image');
-
-    if (!isImgSwatchEl) {
-        return;        
-    }
-
-    if (isImgSwatchEl) {
+    
+    if (!isImgSwatchEl){
+      return;        
+  } else {
+   
       const targetOriginImage = e.target.dataset.source;
 
       const instance = basicLightbox.create(`
@@ -41,5 +40,5 @@ function onGalleryBoxesClick(e) {
       `)
       
      instance.show()
-    }  
+  }
 };
