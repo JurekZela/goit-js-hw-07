@@ -22,9 +22,9 @@ function createImgCardsMarkup(images) {
   galleryBoxesRef.insertAdjacentHTML('beforeend', createGalleryList);
 
 
-  galleryBoxesRef.addEventListener('click', onGalleryBoxesClick);
+  galleryBoxesRef.addEventListener('click', onOpenModalBoxesClick);
 
-function onGalleryBoxesClick(e) {
+function onOpenModalBoxesClick(e) {
   e.preventDefault();
     
     const isImgSwatchEl = e.target.classList.contains('gallery__image');
@@ -32,7 +32,6 @@ function onGalleryBoxesClick(e) {
     if (!isImgSwatchEl){
       return;        
   }
-   
       const targetOriginImage = e.target.dataset.source;
 
       const instance = basicLightbox.create(`
@@ -40,4 +39,15 @@ function onGalleryBoxesClick(e) {
       `)
       
      instance.show()
+
+     window.addEventListener('keydown', e => {
+
+      if (e.code === "Escape") {
+
+        instance.close();
+      }
+
+    return window.removeEventListener('keydown');
+     });
+
 };
