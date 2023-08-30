@@ -27,11 +27,11 @@ function createImgCardsMarkup(images) {
 function onGalleryBoxesClick(e) {
   e.preventDefault();
     
-    const isImgSwatchEl = e.target.classList.contains('.gallery__image');
+    const isImgSwatchEl = e.target.classList.contains('gallery__image');
     
     if (!isImgSwatchEl){
       return;        
-  } else {
+  }
    
       const targetOriginImage = e.target.dataset.source;
 
@@ -40,5 +40,4 @@ function onGalleryBoxesClick(e) {
       `)
       
      instance.show()
-  }
 };
