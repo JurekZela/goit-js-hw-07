@@ -23,27 +23,12 @@ function createImgCardsMarkup(images) {
 
 function onOpenModalBoxesClick(e) {
   e.preventDefault();
-    
-    const isImgSwatchEl = e.target.classList.contains('gallery__image');
+
+  const isImgSwatchEl = e.target.classList.contains('gallery__image');
     
     if (!isImgSwatchEl){
       return;        
   }
-      const targetOriginImage = e.target.dataset.source;
 
-    
-
-     const lightbox = new SimpleLightbox('.gallery a', () => {
-
-        window.addEventListener('keydown', e => {
-
-            if (e.code === "Escape") {
-      
-              instance.close();
-            }
-      
-          return window.removeEventListener('keydown');
-           }
-     ); 
-});
-};
+      const lightbox = new SimpleLightbox('.gallery a', {captionsData: 'alt', captionDelay: 250,} ); 
+    };
