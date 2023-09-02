@@ -17,18 +17,5 @@ function createImgCardsMarkup(images) {
   const createGalleryList = createImgCardsMarkup(galleryItems);
   const galleryBoxesRef = document.querySelector('.gallery');
   galleryBoxesRef.insertAdjacentHTML('beforeend', createGalleryList);
-
-
-  galleryBoxesRef.addEventListener('click', onOpenModalBoxesClick);
-
-function onOpenModalBoxesClick(e) {
-  e.preventDefault();
-
-  const isImgSwatchEl = e.target.classList.contains('gallery__image');
-    
-    if (!isImgSwatchEl){
-      return;        
-  }
-
+  
       const lightbox = new SimpleLightbox('.gallery a', {captionsData: 'alt', captionDelay: 250,} ); 
-    };
